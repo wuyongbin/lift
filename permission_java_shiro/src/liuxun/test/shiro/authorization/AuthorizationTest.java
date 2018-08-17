@@ -45,17 +45,17 @@ public class AuthorizationTest {
 			e.printStackTrace();
 		}
 
-		System.out.println("认证状态：" + subject.isAuthenticated());
+		System.out.println("认证状态1：" + subject.isAuthenticated());
 
 		// 认证通过后执行授权
 
 		// 基于角色的授权
 		// hasRole传入角色标识
 		boolean ishasRole = subject.hasRole("role1");
-		System.out.println("单个角色判断 " + ishasRole);
+		System.out.println("单个角色判断1 " + ishasRole);
 		// hasAllRoles 是否拥有多个角色
 		boolean hasAllRoles = subject.hasAllRoles(Arrays.asList("role1", "role2", "role3"));
-		System.out.println("多个角色判断 " + hasAllRoles);
+		System.out.println("多个角色判断1 " + hasAllRoles);
 
 		// 使用check方法进行授权，如果授权不通过会抛出异常,用于断言
 		subject.checkRole("role2");
@@ -63,10 +63,10 @@ public class AuthorizationTest {
 		// 基于资源的权限
 		// isPermitted传入权限标识符
 		boolean isPermitted = subject.isPermitted("user:create:1");
-		System.out.println("单个权限判断 " + isPermitted);
+		System.out.println("单个权限判断1 " + isPermitted);
 
 		boolean isPermittedAll = subject.isPermittedAll("user:create:1", "user:delete");
-		System.out.println("多个权限判断 " + isPermittedAll);
+		System.out.println("多个权限判断1 " + isPermittedAll);
 
 		// 使用check方法进行授权测试，如果授权不通过会抛出异常
 		subject.checkPermission("item:delete");
@@ -98,17 +98,17 @@ public class AuthorizationTest {
 			e.printStackTrace();
 		}
 
-		System.out.println("认证状态：" + subject.isAuthenticated());
+		System.out.println("认证状态11：" + subject.isAuthenticated());
 
 		// 认证通过后执行授权
 
 		// 基于资源的授权，调用isPermitted方法会调用CustomRealm从数据库中查询正确权限数据
 		// isPermitted传入权限标识符，判断user:create:1是否在CustomRealm查询到的权限数据之内
 		boolean isPermitted = subject.isPermitted("user:create:1");
-		System.out.println("单个权限判断 " + isPermitted);
+		System.out.println("单个权限判断2 " + isPermitted);
 
 		boolean isPermittedAll = subject.isPermittedAll("user:create:1", "user:delete");
-		System.out.println("多个权限判断 " + isPermittedAll);
+		System.out.println("多个权限判断2 " + isPermittedAll);
 
 		// 使用check方法进行授权测试，如果授权不通过会抛出异常
 		subject.checkPermission("item:add:1");
